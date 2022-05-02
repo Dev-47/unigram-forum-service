@@ -16,16 +16,6 @@ app.use(cors());
 // use json
 app.use(express.json());
 
-// initialise default headers
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
-
 // express routes
 app.use("/", require("./routes/testRoutes"));
 
