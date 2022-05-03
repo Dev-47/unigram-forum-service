@@ -14,7 +14,7 @@ const { errorHandler } = require("./middleware/errorMiddleware");
 const port = process.env.PORT || 5000;
 
 // iniitalise db
-connectDB();
+// connectDB();
 
 // initialise express app
 const app = express();
