@@ -2,10 +2,19 @@
 const express = require("express");
 const dotenv = require("dotenv").config();
 const cors = require("cors");
+const colors = require("colors");
+
+// import db
+const connectDB = require("./config/db");
+
 // error handler
 const { errorHandler } = require("./middleware/errorMiddleware");
+
 // set default port
 const port = process.env.PORT || 5000;
+
+// iniitalise db
+connectDB();
 
 // initialise express app
 const app = express();
@@ -28,6 +37,7 @@ app.use(function (req, res, next) {
 
 // express routes
 app.use("/", require("./routes/testRoutes"));
+app.use("/forum", require("./routes/forumRoutes"));
 
 // initialise error handler
 app.use(errorHandler);
