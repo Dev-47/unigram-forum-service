@@ -21,7 +21,7 @@ const discussionSchema = Schema(
       required: [true, "Please Add a body text"],
     },
     attachments: {
-      type: String,
+      type: Array,
       required: false,
     },
     slug: {

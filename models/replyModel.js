@@ -20,17 +20,6 @@ const replySchema = Schema(
       type: String,
       required: false,
     },
-    reply: {
-      type: Object,
-      user_id: {
-        type: String,
-        required: true,
-      },
-      text: {
-        type: String,
-        required: [true, "Please add a comment"],
-      },
-    },
   },
   {
     timestamps: true,
