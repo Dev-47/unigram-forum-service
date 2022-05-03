@@ -37,6 +37,7 @@ app.use(function (req, res, next) {
 
 // express routes
 app.use("/", require("./routes/testRoutes"));
+app.use("/forum", require("./routes/forumRoutes"));
 
 // initialise error handler
 app.use(errorHandler);
