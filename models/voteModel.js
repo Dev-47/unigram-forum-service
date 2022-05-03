@@ -17,7 +17,7 @@ const voteSchema = Schema(
     },
     action: {
       type: String,
-      required: true,
+      enum: ["VOTE_UP", "VOTE_DOWN"],
     },
   },
   {
