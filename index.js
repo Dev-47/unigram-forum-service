@@ -3,10 +3,13 @@ const express = require("express");
 const dotenv = require("dotenv").config();
 const cors = require("cors");
 const colors = require("colors");
+
 // import db
 const connectDB = require("./config/db");
+
 // error handler
 const { errorHandler } = require("./middleware/errorMiddleware");
+
 // set default port
 const port = process.env.PORT || 5000;
 
