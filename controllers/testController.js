@@ -1,5 +1,3 @@
-const { json } = require("express/lib/response");
-
 // post
 const postContent = (req, res) => {
   const { body } = req.body;
