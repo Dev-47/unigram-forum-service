@@ -13,8 +13,8 @@ const { errorHandler } = require("./middleware/errorMiddleware");
 // set default port
 const port = process.env.PORT || 5000;
 
-// iniitalise db
-// connectDB();
+// initalise db
+connectDB();
 
 // initialise express app
 const app = express();
