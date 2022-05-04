@@ -10,7 +10,7 @@ const postContent = (req, res) => {
   try {
     console.log(`it worked! you sent ${body}`);
   } catch (err) {
-    console.log("alaye check your code");
+    console.log("Error Occurred");
     console.error(err);
   }
   res.status(201).send("Server is working");

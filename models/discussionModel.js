@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 const slugify = require("slugify");
 
-const discussionSchema = Schema(
+const discussionSchema = new Schema(
   {
     id: {
       type: String,
