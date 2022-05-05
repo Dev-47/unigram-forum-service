@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  mongo:
+    container_name: mongodb_server
+    image: 'bitnami/mongodb:latest'
+    environment:
+      - MONGODB_USERNAME=my_user
+      - MONGODB_PASSWORD=password123
+      - MONGODB_DATABASE=my_database
+      - MONGODB_ROOT_PASSWORD=root_password
+      - MONGODB_SYSTEM_LOG_VERBOSITY=0
+
+  node:
+    container_name: unigram_node_api
+    build:
+      context: .
+      dockerfile: ${PWD}/.docker/node/Dockerfile
+      target: dev
+    environment:
+      - MONGO_URI=mongodb://my_user:password123@mongo:27017/my_database
+      - PORT=5000
+    depends_on:
+      - mongo
+    ports:
+      - 5000:5000
