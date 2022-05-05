@@ -5,7 +5,7 @@ const discussionSchema = new Schema(
   {
     id: {
       type: String,
-      required: true,
+      required: false,
       unique: true,
     },
     user_id: {
@@ -26,7 +26,7 @@ const discussionSchema = new Schema(
     },
     slug: {
       type: String,
-      required: true,
+      required: false,
       unique: true,
     },
     tags: {
