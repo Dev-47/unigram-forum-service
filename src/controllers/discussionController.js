@@ -33,10 +33,13 @@ const discussionDetails = async (req, res) => {
 
   try {
     const discussion = await Discussion.findById(discussion_id);
+    if (discussion == null) {
+      res.status(404).json({ message: "Nof Found" });
+    }
 
     res.status(200).json(discussion);
   } catch (error) {
-    res.status(404).json({ message: error.message });
+    res.status(400).json({ message: error.message });
   }
 };
 
@@ -52,9 +55,13 @@ const updateDiscussion = async (req, res) => {
       discussion_update
     );
 
+    if (updated_discussion == null) {
+      res.status(404).json({ message: "Nof Found" });
+    }
+
     res.status(202).json(updated_discussion);
   } catch (error) {
-    res.status(404).json({ message: error.message });
+    res.status(400).json({ message: error.message });
   }
 };
 
@@ -67,7 +74,7 @@ const deleteDiscussion = async (req, res) => {
 
     res.status(204).json(null);
   } catch (error) {
-    res.status(404).json({ message: error.message });
+    res.status(400).json({ message: error.message });
   }
 };
 
