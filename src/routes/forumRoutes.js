@@ -5,13 +5,22 @@ const express = require("express");
 const router = express.Router();
 
 // get controllers
-const { getContent, postContent } = require("../controllers/testController");
+const {
+  createDiscussion,
+  discussionDetails,
+  listDiscussion,
+  updateDiscussion,
+  deleteDiscussion,
+} = require("../controllers/discussionController");
 
 // router function
 
-router.route("/discussion").get(getContent).post(postContent);
-router.route("/:id/reply").get(getContent).post(postContent);
-router.route("/:id/vote").get(getContent).post(postContent);
+router.route("/discussion").get(listDiscussion).post(createDiscussion);
+router
+  .route("/discussion/:discussion_id")
+  .get(discussionDetails)
+  .put(updateDiscussion)
+  .delete(deleteDiscussion);
 
 // router export
 module.exports = router;

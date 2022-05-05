@@ -26,8 +26,10 @@ app.use(cors());
 app.use(express.json());
 
 // express routes
-app.use("/", require("./routes/testRoutes"));
-app.use("/forum", require("./routes/forumRoutes"));
+
+// API V1
+
+app.use("/api/v1", require("./routes/forumRoutes"));
 
 // initialise error handler
 app.use(errorHandler);
