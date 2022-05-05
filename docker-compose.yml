@@ -16,10 +16,12 @@ services:
     build:
       context: .
       dockerfile: ${PWD}/.docker/node/Dockerfile
-      target: dev
+      target: base
     environment:
       - MONGO_URI=mongodb://my_user:password123@mongo:27017/my_database
       - PORT=5000
+    volumes:
+      - .:/code/:ro
     depends_on:
       - mongo
     ports:

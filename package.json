@@ -2,12 +2,12 @@
   "name": "unigram-forum-service",
   "version": "0.0.0",
   "description": "forum service for the unigram project",
-  "main": "index.js",
+  "main": "src/index.js",
   "author": "Dev47",
   "license": "MIT",
   "scripts": {
-    "start": "node index",
-    "dev": "nodemon index"
+    "start": "node src/index",
+    "dev": "nodemon src/index"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
