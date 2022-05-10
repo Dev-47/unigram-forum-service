@@ -9,6 +9,7 @@ const connectDB = require("./config/db");
 
 // error handler
 const { errorHandler } = require("./middleware/errorMiddleware");
+const { logHandler } = require("./middleware/logHandler");
 
 // set default port
 const port = process.env.PORT || 5000;
@@ -25,8 +26,10 @@ app.use(cors());
 // use json
 app.use(express.json());
 
-// express routes
+// log routes
+app.use(logHandler);
 
+// express routes
 // API V1
 
 app.use("/api/v1", require("./routes/forumRoutes"));
@@ -35,4 +38,6 @@ app.use("/api/v1", require("./routes/forumRoutes"));
 app.use(errorHandler);
 
 // initialise server
-app.listen(port, () => console.log(`server running on port ${port}`));
+app.listen(port, () =>
+  console.log(`server running on http://localhost:${port}`)
+);
