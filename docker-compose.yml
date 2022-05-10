@@ -10,8 +10,6 @@ services:
       - MONGODB_DATABASE=my_database
       - MONGODB_ROOT_PASSWORD=root_password
       - MONGODB_SYSTEM_LOG_VERBOSITY=0
-    logging:
-      driver: none
 
   node:
     container_name: unigram_node_api
