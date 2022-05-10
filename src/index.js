@@ -3,6 +3,7 @@ const express = require("express");
 const dotenv = require("dotenv").config();
 const cors = require("cors");
 const colors = require("colors");
+const logger = require("morgan");
 
 // import db
 const connectDB = require("./config/db");
@@ -25,8 +26,10 @@ app.use(cors());
 // use json
 app.use(express.json());
 
-// express routes
+// log routes
+app.use(logger("dev"));
 
+// express routes
 // API V1
 
 app.use("/api/v1", require("./routes/forumRoutes"));
