@@ -3,13 +3,13 @@ const express = require("express");
 const dotenv = require("dotenv").config();
 const cors = require("cors");
 const colors = require("colors");
-const logger = require("morgan");
 
 // import db
 const connectDB = require("./config/db");
 
 // error handler
 const { errorHandler } = require("./middleware/errorMiddleware");
+const { logHandler } = require("./middleware/logHandler");
 
 // set default port
 const port = process.env.PORT || 5000;
@@ -27,7 +27,7 @@ app.use(cors());
 app.use(express.json());
 
 // log routes
-app.use(logger("dev"));
+app.use(logHandler);
 
 // express routes
 // API V1
@@ -38,4 +38,6 @@ app.use("/api/v1", require("./routes/forumRoutes"));
 app.use(errorHandler);
 
 // initialise server
-app.listen(port, () => console.log(`server running on port ${port}`));
+app.listen(port, () =>
+  console.log(`server running on http://localhost:${port}`)
+);
