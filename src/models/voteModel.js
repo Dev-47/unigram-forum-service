@@ -2,11 +2,6 @@ const { Schema, model } = require("mongoose");
 
 const voteSchema = new Schema(
   {
-    id: {
-      type: String,
-      required: true,
-      unique: true,
-    },
     user_id: {
       type: String,
       required: true,
