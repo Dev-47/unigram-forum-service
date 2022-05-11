@@ -52,7 +52,8 @@ const updateDiscussion = async (req, res) => {
     const discussion_update = body;
     const updated_discussion = await Discussion.findOneAndUpdate(
       discussion_id,
-      discussion_update
+      discussion_update,
+      { new: true }
     );
 
     if (updated_discussion == null) {
