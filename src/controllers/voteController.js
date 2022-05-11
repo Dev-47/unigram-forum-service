@@ -11,21 +11,27 @@ const addVote = asyncHandler(async (req, res) => {
   const add_vote = new Vote(body);
 
   try {
-    // check if action is valid
-    if (body.action !== "VOTE_UP" && body.action !== "VOTE_DOWN") {
-      throw new Error(
-        "Please provide a valid action, either VOTE_UP or VOTE_DOWN"
-      );
-    }
-
     // check if user has already voted
-    const checkVote = await Vote.findOne({
+    const checkVote = await Vote.exists({
       user_id: body.user_id,
       content_id: body.content_id,
     });
 
     if (checkVote) {
-      throw new Error("You have already voted, run a put request to update");
+      // update the vote
+      const updated_vote = await Vote.findOneAndUpdate(
+        checkVote.content_id,
+        body,
+        {
+          new: true,
+        }
+      );
+
+      res.status(200).json({
+        success: true,
+        message: "Vote updated",
+        data: updated_vote,
+      });
     }
 
     const __add_vote = await add_vote.save();
@@ -49,26 +55,6 @@ const getVotes = asyncHandler(async (req, res) => {
     }
 
     res.status(200).json(vote);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
-
-// PUT /vote/:content_id/
-const updateVote = asyncHandler(async (req, res) => {
-  const { content_id } = req.params;
-  const { body } = req;
-
-  try {
-    const vote_update = body;
-    const updated_vote = await Vote.findOneAndUpdate(content_id, vote_update, {
-      new: true,
-    });
-    if (!updated_vote) {
-      res.status(404).json({ message: "Not Found" });
-    }
-
-    res.status(202).json(updated_vote);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
