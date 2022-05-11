@@ -44,11 +44,10 @@ const addVote = asyncHandler(async (req, res) => {
 
 // GET /vote/:content_id/
 const getVotes = asyncHandler(async (req, res) => {
-  const { contentId } = req.params;
+  const { content_id } = req.params;
+  const vote = await Vote.find({ content_id: content_id });
 
   try {
-    const vote = await Vote.find({ content_id: contentId });
-
     // check if there are any votes
     if (!vote) {
       res.status(404).json({ message: "Votes Not Found on this content" });
@@ -67,12 +66,8 @@ const removeVote = asyncHandler(async (req, res) => {
   const vote = await Vote.findById(vote_id);
 
   try {
-    if (!vote) {
-      res.status(404).json({ message: "Not Found" });
-    }
-    await vote.remove();
-
-    res.status(204).json({ message: "vote removed" });
+    vote.remove();
+    res.status(204).json(null);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -81,6 +76,5 @@ const removeVote = asyncHandler(async (req, res) => {
 module.exports = {
   addVote,
   getVotes,
-  updateVote,
   removeVote,
 };
