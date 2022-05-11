@@ -6,6 +6,9 @@ COPY package.json package.json
 
 RUN yarn
 
+RUN apt-get update && apt-get install -y \
+    curl
+
 COPY . /code/
 
 FROM base as dev
