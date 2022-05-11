@@ -1,13 +1,12 @@
 const { Schema, model } = require("mongoose");
-const slugify = require("slugify");
+
+// discussion signals
+const {
+  generate_unique_discussion_slug,
+} = require("./signals/discussionSignals");
 
 const discussionSchema = new Schema(
   {
-    id: {
-      type: String,
-      required: false,
-      unique: true,
-    },
     user_id: {
       type: String,
       required: true,
@@ -39,12 +38,6 @@ const discussionSchema = new Schema(
   }
 );
 
-discussionSchema.pre("validate", (next) => {
-  if (this.title) {
-    this.slug = slugify(this.title, { lower: true, strict: true });
-  }
-
-  next();
-});
+discussionSchema.pre("save", generate_unique_discussion_slug);
 
 module.exports = model("Discussion", discussionSchema);

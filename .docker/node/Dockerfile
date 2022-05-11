@@ -11,9 +11,3 @@ COPY . /code/
 FROM base as dev
 
 RUN npm install -g nodemon
-
-CMD [ "yarn", "dev" ]
-
-FROM base as prod
-
-CMD [ "yarn", "start" ]
