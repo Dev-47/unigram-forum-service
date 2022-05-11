@@ -34,7 +34,7 @@ const discussionDetails = async (req, res) => {
   try {
     const discussion = await Discussion.findById(discussion_id);
     if (discussion == null) {
-      res.status(404).json({ message: "Nof Found" });
+      res.status(404).json({ message: "Not Found" });
     }
 
     res.status(200).json(discussion);
@@ -57,7 +57,7 @@ const updateDiscussion = async (req, res) => {
     );
 
     if (updated_discussion == null) {
-      res.status(404).json({ message: "Nof Found" });
+      res.status(404).json({ message: "Not Found" });
     }
 
     res.status(202).json(updated_discussion);
