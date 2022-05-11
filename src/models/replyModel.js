@@ -1,24 +1,19 @@
 const { Schema, model } = require("mongoose");
 
-const replySchema =new Schema(
+const replySchema = new Schema(
   {
-    id: {
-      type: String,
-      required: true,
-      unique: true,
-    },
     user_id: {
       type: String,
       required: true,
     },
-    discussion_id: {
+    content_id: {
       type: Schema.Types.ObjectId,
-      required: false,
-      ref: "Discussion",
+      required: true,
+      ref: "Discussion" || "Reply",
     },
-    reply_id: {
+    body: {
       type: String,
-      required: false,
+      required: true,
     },
   },
   {

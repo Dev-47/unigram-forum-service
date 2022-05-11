@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const _ = require("colors");
 
 const connectDB = async () => {
   try {
