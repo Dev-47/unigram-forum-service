@@ -69,9 +69,10 @@ const updateDiscussion = async (req, res) => {
 // DELETE /discussion/:discussion_id/
 const deleteDiscussion = async (req, res) => {
   const { discussion_id } = req.params;
+  const discussion = await Discussion.findById(discussion_id);
 
   try {
-    await Discussion.findOneAndDelete(discussion_id);
+    discussion.remove();
 
     res.status(204).json(null);
   } catch (error) {
