@@ -1,6 +1,7 @@
 <!-- Please kindly note that pull requests are strictly for the dev branch except you are the repo moderator -->
 
-<!-- if you pr fixes an issue put the issue number in front e.g Fix Issue: #100 -->
+<!-- if you pr fixes an issue put the issue number in front e.g Fix Issue: #100, -->
+<!-- Put nil if not applicable. -->
 
 #### Issue Fixed:
 
