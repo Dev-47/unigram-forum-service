@@ -22,7 +22,7 @@ services:
       - PORT=5000
     command: yarn dev
     volumes:
-      - .:/code/:ro
+      - ./src:/code/src:rw
     depends_on:
       - mongo
     ports:
