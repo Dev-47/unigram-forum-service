@@ -13,6 +13,10 @@ const voteSchema = new Schema(
     action: {
       type: String,
       enum: ["VOTE_UP", "VOTE_DOWN"],
+      required: [
+        true,
+        'Please provide a valid action, either "VOTE_UP" or "VOTE_DOWN"',
+      ],
     },
   },
   {
