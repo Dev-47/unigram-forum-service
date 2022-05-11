@@ -20,6 +20,13 @@ const {
   deleteReply,
 } = require("../controllers/replyController");
 
+const {
+  addVote,
+  getVotes,
+  updateVote,
+  removeVote,
+} = require("../controllers/voteController");
+
 // router function
 
 // discussion routes
@@ -37,6 +44,11 @@ router
   .get(replyDetails)
   .put(updateReply)
   .delete(deleteReply);
+
+// vote routes
+router.post("/vote/", addVote);
+router.route("/vote/:content_id").get(getVotes).put(updateVote);
+router.delete("/vote/:content_id/:vote_id", removeVote);
 
 // router export
 module.exports = router;
