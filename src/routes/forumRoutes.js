@@ -23,7 +23,6 @@ const {
 const {
   addVote,
   getVotes,
-  updateVote,
   removeVote,
 } = require("../controllers/voteController");
 
@@ -47,7 +46,7 @@ router
 
 // vote routes
 router.post("/vote/", addVote);
-router.route("/vote/:content_id").get(getVotes).put(updateVote);
+router.route("/vote/:content_id").get(getVotes);
 router.delete("/vote/:content_id/:vote_id", removeVote);
 
 // router export
