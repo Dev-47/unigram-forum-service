@@ -4,7 +4,7 @@ const logger = require("morgan");
 const connectDB = require("./config/db");
 
 const { errorHandler } = require("./middleware/errorMiddleware");
-
+const { authMiddleware } = require("./middleware/authMiddleware");
 // get env variables
 require("dotenv").config();
 
@@ -20,6 +20,7 @@ const app = express();
 // middlewares
 app.use(express.json());
 app.use(errorHandler);
+app.use(authMiddleware);
 app.use(cors());
 app.use(
   logger(
