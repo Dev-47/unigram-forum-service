@@ -8,7 +8,7 @@ const {
   afterEach,
 } = require("@jest/globals");
 
-const db = require("../config/db.memory");
+const db = require("../config/db.test");
 
 beforeAll(async () => {
   await db.setUp();
