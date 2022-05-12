@@ -1,36 +1,30 @@
-const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
-const User = axios.get("http://localhost:7000/api/v1/users/:id");
+const axios = require("axios").default;
 
-const protect = asyncHandler(async (req, res, next) => {
-  let token;
+const { USER_SERVICE_API_URL } = process.env;
+axios.defaults.baseURL = USER_SERVICE_API_URL;
 
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith("Bearer")
-  ) {
-    try {
-      // Get token from header
-      token = req.headers.authorization.split(" ")[1];
+const SAFE_METHODS = ["GET", "OPTIONS", "HEAD"];
 
-      // Verify token
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-      // Get user from the token
-      req.user = await User.id.select("-password");
-
+const authMiddleware = asyncHandler(async (req, res, next) => {
+  if (!SAFE_METHODS.includes(req.method)) {
+    if (!req.headers.authorization) {
+      res.status(401).json({ error: "Authentication token is required" });
       next();
-    } catch (error) {
-      console.log(error);
-      res.status(401);
-      throw new Error("Not authorized");
+    } else {
+      await axios({
+        method: "GET",
+        url: "/auth/profile/",
+        headers: req.headers,
+      })
+        .then((res) => {})
+        .catch((err) => {
+          res.status(err.response.status).json(err.response.data);
+        });
     }
   }
 
-  if (!token) {
-    res.status(401);
-    throw new Error("Not authorized, no token");
-  }
+  next();
 });
 
-module.exports = { protect };
+module.exports = { authMiddleware };

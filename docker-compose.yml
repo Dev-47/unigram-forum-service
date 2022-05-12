@@ -20,6 +20,8 @@ services:
     environment:
       - MONGO_URI=mongodb://my_user:password123@mongo:27017/my_database
       - PORT=5000
+    env_file:
+      - .env
     command: yarn dev
     volumes:
       - ./src:/code/src:rw
