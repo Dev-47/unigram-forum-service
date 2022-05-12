@@ -1,1 +1,1 @@
-docker-compose run --rm node yarn jest
+docker-compose run --rm node yarn jest ./tests
